@@ -34,11 +34,11 @@ public class NoteRepository {
         return noteDao.getAllNotesWithTags();
     }
 
-    public Note getNoteById(long noteId) {
+    public LiveData<Note> getNoteById(long noteId) {
         return noteDao.getNoteById(noteId);
     }
 
-    public NoteWithTags getNoteWithTagsById(long noteId) {
+    public LiveData<NoteWithTags> getNoteWithTagsById(long noteId) {
         return noteDao.getNoteWithTagsById(noteId);
     }
 

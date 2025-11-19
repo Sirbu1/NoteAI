@@ -1,6 +1,7 @@
 package com.notai.data.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
@@ -23,6 +24,7 @@ public class Note {
         this.updatedAt = System.currentTimeMillis();
     }
 
+    @Ignore
     public Note(String title, String content) {
         this.title = title;
         this.content = content;
@@ -30,6 +32,7 @@ public class Note {
         this.updatedAt = System.currentTimeMillis();
     }
 
+    @Ignore
     public Note(long id, String title, String content, long createdAt, long updatedAt) {
         this.id = id;
         this.title = title;

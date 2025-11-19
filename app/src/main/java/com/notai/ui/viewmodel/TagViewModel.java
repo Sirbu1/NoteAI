@@ -34,21 +34,24 @@ public class TagViewModel extends ViewModel {
     }
     
     public void insertTag(Tag tag) {
-        isLoading.setValue(true);
+        isLoading.postValue(true);
         tagRepository.insertTag(tag);
-        isLoading.setValue(false);
+        // 插入操作是异步的，但由于 Room 的 LiveData 会自动更新，我们可以立即设置为 false
+        isLoading.postValue(false);
     }
     
     public void updateTag(Tag tag) {
-        isLoading.setValue(true);
+        isLoading.postValue(true);
         tagRepository.updateTag(tag);
-        isLoading.setValue(false);
+        // 更新操作是异步的，但由于 Room 的 LiveData 会自动更新，我们可以立即设置为 false
+        isLoading.postValue(false);
     }
     
     public void deleteTag(long tagId) {
-        isLoading.setValue(true);
+        isLoading.postValue(true);
         tagRepository.deleteTag(tagId);
-        isLoading.setValue(false);
+        // 删除操作是异步的，但由于 Room 的 LiveData 会自动更新，我们可以立即设置为 false
+        isLoading.postValue(false);
     }
     
     public static class Factory implements ViewModelProvider.Factory {

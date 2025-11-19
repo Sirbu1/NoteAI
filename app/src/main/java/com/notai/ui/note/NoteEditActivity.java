@@ -37,6 +37,7 @@ public class NoteEditActivity extends AppCompatActivity {
     private Long noteId = null;
     private Set<Long> selectedTagIds = new HashSet<>();
     private TagChipAdapter tagChipAdapter;
+    private Note currentNote = null;
     
     public static final String EXTRA_NOTE_ID = "extra_note_id";
     
@@ -90,18 +91,20 @@ public class NoteEditActivity extends AppCompatActivity {
     
     private void loadNote() {
         if (noteId != null) {
-            NoteWithTags noteWithTags = noteViewModel.getNoteWithTagsById(noteId);
-            if (noteWithTags != null) {
-                binding.titleEditText.setText(noteWithTags.getNote().getTitle());
-                binding.contentEditText.setText(noteWithTags.getNote().getContent());
-                selectedTagIds = new HashSet<>();
-                if (noteWithTags.getTags() != null) {
-                    for (Tag tag : noteWithTags.getTags()) {
-                        selectedTagIds.add(tag.getId());
+            noteViewModel.getNoteWithTagsById(noteId).observe(this, noteWithTags -> {
+                if (noteWithTags != null) {
+                    currentNote = noteWithTags.getNote();
+                    binding.titleEditText.setText(currentNote.getTitle());
+                    binding.contentEditText.setText(currentNote.getContent());
+                    selectedTagIds = new HashSet<>();
+                    if (noteWithTags.getTags() != null) {
+                        for (Tag tag : noteWithTags.getTags()) {
+                            selectedTagIds.add(tag.getId());
+                        }
                     }
+                    updateTagSelection();
                 }
-                updateTagSelection();
-            }
+            });
         }
     }
     
@@ -155,8 +158,9 @@ public class NoteEditActivity extends AppCompatActivity {
         }
         
         Note note;
-        if (noteId != null) {
-            note = new Note(noteId, title, content, 0, System.currentTimeMillis());
+        if (noteId != null && currentNote != null) {
+            // 更新笔记时保留原始创建时间
+            note = new Note(noteId, title, content, currentNote.getCreatedAt(), System.currentTimeMillis());
         } else {
             note = new Note(title, content);
         }

@@ -22,11 +22,11 @@ public interface NoteDao {
     LiveData<List<NoteWithTags>> getAllNotesWithTags();
     
     @Query("SELECT * FROM notes WHERE id = :noteId")
-    Note getNoteById(long noteId);
+    LiveData<Note> getNoteById(long noteId);
     
     @Transaction
     @Query("SELECT * FROM notes WHERE id = :noteId")
-    NoteWithTags getNoteWithTagsById(long noteId);
+    LiveData<NoteWithTags> getNoteWithTagsById(long noteId);
     
     @Query("SELECT DISTINCT notes.* FROM notes " +
            "INNER JOIN note_tag_cross_ref ON notes.id = note_tag_cross_ref.noteId " +

@@ -1,11 +1,11 @@
 package com.notai.data.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 
 import com.notai.data.dao.NoteDao;
 import com.notai.data.dao.TagDao;
@@ -21,8 +21,9 @@ import com.notai.data.model.Tag;
         version = 1,
         exportSchema = true
 )
-@TypeConverters({Converters.class})
 public abstract class NoteDatabase extends RoomDatabase {
+    private static final String TAG = "NoteDatabase";
+    
     public abstract NoteDao noteDao();
     public abstract TagDao tagDao();
     
@@ -33,11 +34,19 @@ public abstract class NoteDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (NoteDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                            context.getApplicationContext(),
-                            NoteDatabase.class,
-                            DATABASE_NAME
-                    ).build();
+                    try {
+                        INSTANCE = Room.databaseBuilder(
+                                context.getApplicationContext(),
+                                NoteDatabase.class,
+                                DATABASE_NAME
+                        )
+                        .fallbackToDestructiveMigration() // 如果数据库版本升级失败，删除旧数据库
+                        .build();
+                        Log.d(TAG, "Database initialized successfully");
+                    } catch (Exception e) {
+                        Log.e(TAG, "Error initializing database", e);
+                        throw e;
+                    }
                 }
             }
         }

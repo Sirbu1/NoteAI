@@ -94,10 +94,10 @@ public class NoteAdapter extends ListAdapter<NoteWithTags, NoteAdapter.NoteViewH
                     try {
                         int color = Color.parseColor(tag.getColor());
                         chip.setChipBackgroundColor(ColorStateList.valueOf(color));
-                        chip.setChipTextColor(ColorStateList.valueOf(Color.WHITE));
+                        chip.setTextColor(ColorStateList.valueOf(Color.WHITE));
                     } catch (Exception e) {
                         chip.setChipBackgroundColor(ColorStateList.valueOf(Color.parseColor("#6200EE")));
-                        chip.setChipTextColor(ColorStateList.valueOf(Color.WHITE));
+                        chip.setTextColor(ColorStateList.valueOf(Color.WHITE));
                     }
                     tagsContainer.addView(chip);
                 }

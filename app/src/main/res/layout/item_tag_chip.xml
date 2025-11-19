@@ -8,7 +8,7 @@
     android:checkable="true"
     android:clickable="true"
     android:focusable="true"
+    android:textColor="@android:color/white"
     app:chipBackgroundColor="@color/purple_500"
-    app:chipStrokeWidth="0dp"
-    app:chipTextColor="@android:color/white" />
+    app:chipStrokeWidth="0dp" />
 

@@ -1,6 +1,7 @@
 package com.notai.data.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.util.Arrays;
@@ -29,15 +30,18 @@ public class Tag {
     public Tag() {
     }
 
+    @Ignore
     public Tag(String name) {
         this.name = name;
     }
 
+    @Ignore
     public Tag(String name, String color) {
         this.name = name;
         this.color = color;
     }
 
+    @Ignore
     public Tag(long id, String name, String color) {
         this.id = id;
         this.name = name;

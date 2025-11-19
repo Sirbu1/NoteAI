@@ -1,6 +1,8 @@
 package com.notai.data.model;
 
 import androidx.room.Entity;
+import androidx.room.Index;
+import androidx.room.Ignore;
 
 import java.util.Objects;
 
@@ -9,7 +11,11 @@ import java.util.Objects;
  */
 @Entity(
         tableName = "note_tag_cross_ref",
-        primaryKeys = {"noteId", "tagId"}
+        primaryKeys = {"noteId", "tagId"},
+        indices = {
+                @Index(value = {"noteId"}),
+                @Index(value = {"tagId"})
+        }
 )
 public class NoteTagCrossRef {
     private long noteId;
@@ -18,6 +24,7 @@ public class NoteTagCrossRef {
     public NoteTagCrossRef() {
     }
 
+    @Ignore
     public NoteTagCrossRef(long noteId, long tagId) {
         this.noteId = noteId;
         this.tagId = tagId;

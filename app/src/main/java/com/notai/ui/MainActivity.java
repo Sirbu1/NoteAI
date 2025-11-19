@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -29,6 +31,8 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
     
+    private static final String TAG = "MainActivity";
+    
     private ActivityMainBinding binding;
     private NoteViewModel viewModel;
     private NoteAdapter noteAdapter;
@@ -36,16 +40,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        
-        viewModel = new ViewModelProvider(this, new NoteViewModel.Factory()).get(NoteViewModel.class);
-        
-        setupToolbar();
-        setupRecyclerView();
-        setupSearch();
-        setupFab();
-        observeViewModel();
+        try {
+            binding = ActivityMainBinding.inflate(getLayoutInflater());
+            setContentView(binding.getRoot());
+            
+            viewModel = new ViewModelProvider(this, new NoteViewModel.Factory()).get(NoteViewModel.class);
+            
+            setupToolbar();
+            setupRecyclerView();
+            setupSearch();
+            setupFab();
+            observeViewModel();
+        } catch (Exception e) {
+            Log.e(TAG, "Error in onCreate", e);
+            Toast.makeText(this, "应用启动失败: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
     
     private void setupToolbar() {
