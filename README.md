@@ -6,11 +6,11 @@ NoteAI 是一个智能笔记应用，允许用户在本地创建、搜索、管�
 
 ## 技术栈
 
-- **开发语言**: Kotlin
+- **开发语言**: Java
 - **UI 框架**: Material Design Components (原生 XML 布局)
 - **架构模式**: MVVM (Model-View-ViewModel)
 - **数据库**: Room (SQLite ORM)
-- **异步处理**: Kotlin Coroutines + Flow
+- **异步处理**: Executor + LiveData
 - **依赖注入**: 手动依赖注入（通过 Application 类）
 
 ## 项目结构
@@ -19,33 +19,33 @@ NoteAI 是一个智能笔记应用，允许用户在本地创建、搜索、管�
 app/src/main/java/com/notai/
 ├── data/                    # 数据层
 │   ├── model/              # 数据模型
-│   │   ├── Note.kt
-│   │   ├── Tag.kt
-│   │   ├── NoteTagCrossRef.kt
-│   │   └── NoteWithTags.kt
+│   │   ├── Note.java
+│   │   ├── Tag.java
+│   │   ├── NoteTagCrossRef.java
+│   │   └── NoteWithTags.java
 │   ├── dao/                # 数据访问对象
-│   │   ├── NoteDao.kt
-│   │   └── TagDao.kt
+│   │   ├── NoteDao.java
+│   │   └── TagDao.java
 │   ├── database/           # 数据库配置
-│   │   ├── NoteDatabase.kt
-│   │   └── Converters.kt
+│   │   ├── NoteDatabase.java
+│   │   └── Converters.java
 │   └── repository/         # 仓库层
-│       ├── NoteRepository.kt
-│       └── TagRepository.kt
+│       ├── NoteRepository.java
+│       └── TagRepository.java
 ├── ui/                      # UI 层
-│   ├── MainActivity.kt     # 主界面
+│   ├── MainActivity.java   # 主界面
 │   ├── adapter/            # RecyclerView 适配器
-│   │   ├── NoteAdapter.kt
-│   │   ├── TagChipAdapter.kt
-│   │   └── TagManageAdapter.kt
+│   │   ├── NoteAdapter.java
+│   │   ├── TagChipAdapter.java
+│   │   └── TagManageAdapter.java
 │   ├── note/               # 笔记相关界面
-│   │   └── NoteEditActivity.kt
+│   │   └── NoteEditActivity.java
 │   ├── tag/                # 标签相关界面
-│   │   └── TagManageActivity.kt
+│   │   └── TagManageActivity.java
 │   └── viewmodel/          # ViewModel 层
-│       ├── NoteViewModel.kt
-│       └── TagViewModel.kt
-└── NoteAIApplication.kt     # Application 类
+│       ├── NoteViewModel.java
+│       └── TagViewModel.java
+└── NoteAIApplication.java   # Application 类
 ```
 
 ## 功能特性
