@@ -4,8 +4,22 @@
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
+    
+    <!-- 字母Z - 缩小版本，居中显示 -->
+    
+    <!-- 上横线 -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M54,20c-1.1,0 -2,0.9 -2,2v24c0,1.1 0.9,2 2,2s2,-0.9 2,-2V22c0,-1.1 -0.9,-2 -2,-2zM54,60c-1.1,0 -2,0.9 -2,2s0.9,2 2,2s2,-0.9 2,-2s-0.9,-2 -2,-2z"/>
+        android:pathData="M30,30 L78,30 L78,36 L30,36 Z" />
+    
+    <!-- 斜线部分 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M78,36 L78,42 L30,72 L30,66 Z" />
+    
+    <!-- 下横线 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M30,72 L78,72 L78,78 L30,78 Z" />
+    
 </vector>
-
